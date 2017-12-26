@@ -11,11 +11,10 @@
       justify-content: space-between;
 
       .const-sidebar {
-        width: 15%;
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: flex-start;
         background: {
           color: $grey;
@@ -25,26 +24,57 @@
           weight: normal;
         }
         color: white;
-
-        .hamburger-btn {
-
+        transition: {
+          duration: $time;
+          timing-function: linear;
         }
 
         .const-menu, .sections, .const-info {
+          overflow-x: hidden;
           box-sizing: border-box;
           width: 100%;
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
+          font: {
+            family: Ico, Helvetica, sans-serif;
+          }
         }
 
         .const-menu {
-          height: 16%;
+          min-height: 25%;
+          justify-content: space-between;
           border: {
             bottom: $line * .1 solid #5E5E5E;
           }
+
+          .hamburger-btn {
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            padding: 0 0 0 $line * 1.5;
+            align-self: flex-start;
+            background: {
+              color: transparent;
+            }
+            border: none;
+            color: white;
+            font: {
+              size: 2em;
+              family: Ico, sans-serif;
+            }
+          }
+
           a {
-            padding: 0 $line * 1.5;
+            span {
+              padding: 0 $line;
+              font: {
+                size: 1.2em;
+                family: Ico, Helvetica, sans-serif;
+              }
+            }
+            text-align: left;
+            padding: $line $line / 2 $line / 2 $line;
             color: white;
             text-transform: none;
             text-decoration: none;
@@ -62,51 +92,100 @@
         }
 
         .sections {
-          height: 20%;
+          max-height: 60%;
+          overflow: {
+            y: scroll;
+          }
           border: {
             bottom: $line * .1 solid #5E5E5E;
           }
-          h2 {
-            margin: 0;
-            padding: 0 $line * 1.5;
-            font: {
-              size: 1.2em;
-              weight: normal;
+          justify-content: flex-start;
+
+          &::-webkit-scrollbar {
+            position: absolute;
+            width: $line * 1.2;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: {
+              color: transparentize(#373737, 0.3);
             }
+
+            &:hover {
+              background: {
+                color: transparentize(#373737, 0.3);
+              }
+            }
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: {
+              color: transparentize(#5E5E5E, 0.1);
+            }
+
+            &:hover {
+              background: {
+                color: transparentize(#696969, 0.2);
+              }
+            }
+          }
+
+          .const-section {
+            padding: $line $line * 1.5;
             transition: {
               duration: $time;
               timing-function: linear;
             }
+            cursor: pointer;
 
             &:hover {
               background: {
                 color: #464646;
               }
             }
+
+            h2 {
+              margin: 0;
+              padding: 0;
+              font: {
+                size: 1.2em;
+                weight: normal;
+              }
+            }
           }
         }
 
         .const-info {
-          height: 20%;
+          min-height: 15%;
 
           .info-mail, .info-telegram, .copyright {
+            span {
+              padding: 0 $line;
+              font: {
+                size: 1.2em;
+                family: Ico, Helvetica, sans-serif;
+              }
+            }
             padding: 0 $line * 1.5;
             margin: 0;
             text-decoration: none;
             text-transform: none;
             font: {
-              size: 0.95em;
+              size: 0.8em;
               weight: normal;
             }
             color: white;
-          }
+            transition: {
+              duration: $time;
+              timing-function: linear;
+            }
+            cursor: pointer;
 
-          .info-telegram {
-
-          }
-
-          .copyright {
-
+            &:hover {
+              background: {
+                color: #464646;
+              }
+            }
           }
         }
       }
