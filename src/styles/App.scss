@@ -1,0 +1,126 @@
+@import "variables.scss";
+
+@include reset;
+
+#root {
+  .App {
+    .constructor {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .const-sidebar {
+        width: 15%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        background: {
+          color: $grey;
+        }
+        font: {
+          size: 1.1em;
+          weight: normal;
+        }
+        color: white;
+
+        .hamburger-btn {
+
+        }
+
+        .const-menu, .sections, .const-info {
+          box-sizing: border-box;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+        }
+
+        .const-menu {
+          height: 16%;
+          border: {
+            bottom: $line * .1 solid #5E5E5E;
+          }
+          a {
+            padding: 0 $line * 1.5;
+            color: white;
+            text-transform: none;
+            text-decoration: none;
+            transition: {
+              duration: $time;
+              timing-function: linear;
+            }
+
+            &:hover {
+              background: {
+                color: #464646;
+              }
+            }
+          }
+        }
+
+        .sections {
+          height: 20%;
+          border: {
+            bottom: $line * .1 solid #5E5E5E;
+          }
+          h2 {
+            margin: 0;
+            padding: 0 $line * 1.5;
+            font: {
+              size: 1.2em;
+              weight: normal;
+            }
+            transition: {
+              duration: $time;
+              timing-function: linear;
+            }
+
+            &:hover {
+              background: {
+                color: #464646;
+              }
+            }
+          }
+        }
+
+        .const-info {
+          height: 20%;
+
+          .info-mail, .info-telegram, .copyright {
+            padding: 0 $line * 1.5;
+            margin: 0;
+            text-decoration: none;
+            text-transform: none;
+            font: {
+              size: 0.95em;
+              weight: normal;
+            }
+            color: white;
+          }
+
+          .info-telegram {
+
+          }
+
+          .copyright {
+
+          }
+        }
+      }
+
+      .const-main {
+         h1 {
+
+         }
+      }
+
+      .const-help, .const-submit {
+        display: none;
+        position: absolute;
+      }
+    }
+  }
+}
