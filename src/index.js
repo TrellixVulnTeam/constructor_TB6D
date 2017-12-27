@@ -22,11 +22,6 @@ firebase.auth(firebase.app("Constructor")).useDeviceLanguage();
 /**
  * @return {!Object} The FirebaseUI config.
  */
-
-function handleSignInUser() {
-    // Lol, kek, cheburek
-}
-
 function setSignInUI() {
     return {
         "callbacks": {
@@ -56,9 +51,15 @@ function setSignInUI() {
             firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
     };
 }
+/**
+* @param user firebase.User object
+*/
+function handleSignInUser(user) {
+    // Lol, kek, cheburek
+}
 
-let signInUI = new firebaseui.auth.Auth(firebase.auth(firebase.app("Constructor")));
-signInUI.disableAutoSignIn();
+// let signInUI = new firebaseui.auth.Auth(firebase.auth(firebase.app("Constructor")));
+// signInUI.disableAutoSignIn();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

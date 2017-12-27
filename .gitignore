@@ -24,3 +24,4 @@ yarn-error.log*
 !index.css
 .idea/
 .idea/workspace.xml
+firebase-debug.log
