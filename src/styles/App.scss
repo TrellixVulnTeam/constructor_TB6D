@@ -30,20 +30,16 @@
         }
 
         .const-menu, .sections, .const-info {
-          overflow-x: hidden;
           box-sizing: border-box;
           width: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
-          font: {
-            family: Ico, Helvetica, sans-serif;
-          }
         }
 
         .const-menu {
           min-height: 25%;
           justify-content: space-between;
+          align-items: flex-start;
           border: {
             bottom: $line * .1 solid #5E5E5E;
           }
@@ -66,21 +62,31 @@
           }
 
           a {
-            span {
-              padding: 0 $line;
-              font: {
-                size: 1.2em;
-                family: Ico, Helvetica, sans-serif;
-              }
+            box-sizing: border-box;
+            width: 100%;
+            height: 25%;
+            padding: $line * 1.5 0 $line * 1.5 $line * 2;
+            font: {
+              size: 1.2em;
+              family: Ico, Helvetica, sans-serif;
             }
             text-align: left;
-            padding: $line $line / 2 $line / 2 $line;
             color: white;
             text-transform: none;
             text-decoration: none;
             transition: {
-              duration: $time;
-              timing-function: linear;
+            duration: $time;
+            timing-function: linear;
+            }
+            font: {
+              size: 1.2em;
+              family: Ico, Helvetica, sans-serif;
+            }
+
+            span {
+              position: absolute;
+              transform: translateX(0);
+              padding: 0 $line;
             }
 
             &:hover {
@@ -103,7 +109,7 @@
 
           &::-webkit-scrollbar {
             position: absolute;
-            width: $line * 1.2;
+            width: $line;
           }
 
           &::-webkit-scrollbar-track {
@@ -156,18 +162,17 @@
         }
 
         .const-info {
-          min-height: 15%;
+          justify-content: center;
+          max-height: 20%;
 
-          .info-mail, .info-telegram, .copyright {
-            span {
-              padding: 0 $line;
-              font: {
-                size: 1.2em;
-                family: Ico, Helvetica, sans-serif;
-              }
+          a {
+            box-sizing: border-box;
+            height: 30%;
+            font: {
+              size: 1.2em;
+              family: Ico, Helvetica, sans-serif;
             }
-            padding: 0 $line * 1.5;
-            margin: 0;
+            padding: $line * .6 0 $line * .6 $line * 2;
             text-decoration: none;
             text-transform: none;
             font: {
@@ -181,6 +186,12 @@
             }
             cursor: pointer;
 
+            span {
+              position: absolute;
+              padding: 0 $line;
+              transform: translateX(0);
+            }
+
             &:hover {
               background: {
                 color: #464646;
@@ -188,17 +199,78 @@
             }
           }
         }
+
+        &.active {
+          .const-menu, .const-info {
+            a {
+              span {
+                transform: translateX(-200%);
+                display: none;
+              }
+            }
+          }
+        }
       }
 
-      .const-main {
+      #const-main {
+        height: 100%;
+        flex-grow: 1;
+
          h1 {
 
          }
       }
 
       .const-help, .const-submit {
-        display: none;
         position: absolute;
+      }
+
+      .const-help {
+        display: none;
+      }
+
+      .const-submit {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: $line * 4;
+        right: $line * 4;
+        height: $line * 8;
+        width: $line * 8;
+        background: {
+          color: #00aa00;
+        }
+        border: {
+          style: none;
+          radius: 50%;
+        }
+        font: {
+          size: 1.2em;
+        }
+        transition: {
+          duration: $time;
+          timing-function: linear;
+        }
+        backface-visibility: hidden;
+
+
+        //&:hover {
+        //  perspective-origin: center;
+        //  transform: rotateY(180deg);
+        //}
+
+        input {
+          color: white;
+          background: {
+            color: transparent;
+          }
+          border: none;
+          outline: none;
+          font: {
+            size: 1.1em;
+          }
+          text-align: center;
+        }
       }
     }
   }

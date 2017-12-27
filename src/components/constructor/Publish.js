@@ -2,6 +2,10 @@ import React, {Component} from "react";
 
 export class Publish extends Component {
     render() {
-        return <input type="submit" className="const-submit" required/>
+        return (
+            <div className="const-submit">
+                <input type="submit" placeholder="Publish" required/>
+            </div>
+        );
     }
 }
