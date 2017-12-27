@@ -23,6 +23,10 @@ firebase.auth(firebase.app("Constructor")).useDeviceLanguage();
  * @return {!Object} The FirebaseUI config.
  */
 
+function handleSignInUser() {
+    // Lol, kek, cheburek
+}
+
 function setSignInUI() {
     return {
         "callbacks": {

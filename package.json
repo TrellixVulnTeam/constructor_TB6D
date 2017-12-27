@@ -26,5 +26,13 @@
   "main": "build/index.html",
   "devDependencies": {},
   "author": "JoncoLab",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoncoLab/constructor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoncoLab/constructor/issues"
+  },
+  "homepage": "https://constructor-7553e.firebaseapp.com"
 }
