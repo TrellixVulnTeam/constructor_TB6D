@@ -64,7 +64,7 @@ class App extends Component {
                 requireDisplayName: true
             }
         ],
-        tosUrl: "https://pornhub.com",
+        tosUrl: "https://www.google.com'",
     };
     render() {
         return this.state.signedIn ?
