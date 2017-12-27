@@ -215,10 +215,19 @@
       #const-main {
         height: 100%;
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
 
-         h1 {
-
-         }
+        #const-section {
+          background: {
+            color: grey;
+          }
+          width: 80%;
+          height: $line * 25;
+          border: 1px solid black;
+        }
       }
 
       .const-help, .const-submit {

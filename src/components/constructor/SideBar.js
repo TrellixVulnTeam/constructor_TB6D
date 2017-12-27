@@ -11,6 +11,7 @@ export class SideBar extends Component {
         };
 
         this.clickHandler = this.clickHandler.bind(this);
+        this.value = this.value.bind(this);
     }
 
     clickHandler() {
@@ -24,6 +25,13 @@ export class SideBar extends Component {
         }
     }
 
+    /**
+     * @param component Компонент, який ти хоч збілдити в конструктор
+     */
+    value(component) {
+        this.props.value(component);
+    }
+
     render() {
         return (
             <section className={this.state.sideBarClass} style={{width: parseInt(this.state.sideBarWidth) + '%'}}>
@@ -34,7 +42,7 @@ export class SideBar extends Component {
                     <a href="#">♦ <span>Оплата</span></a>
                 </nav>
                 <nav className="sections">
-                    <Section/>
+                    <Section value={this.value}/>
                     <Section/>
                     <Section/>
                     <Section/>

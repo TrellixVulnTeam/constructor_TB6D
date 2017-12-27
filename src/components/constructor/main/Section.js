@@ -8,12 +8,13 @@ export class Section extends Component {
     }
 
     clickMe() {
-
+        const Comp = false;
+        this.props.value(Comp);
     }
 
     render() {
         return (
-            <section className="const-section" onClick={this.clickMe}>
+            <section className="const-section" onClick={() => this.clickMe()}>
                 <h2>S!</h2>
             </section>
         );
