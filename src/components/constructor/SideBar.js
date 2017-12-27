@@ -7,46 +7,31 @@ export class SideBar extends Component {
 
         this.state = {
             sideBarWidth: 17,
+            sideBarClass: 'const-sidebar'
         };
 
         this.clickHandler = this.clickHandler.bind(this);
     }
-
-    sideBarContent = [
-        'На головну',
-        'Особистий кабінет',
-        'Інформація про оплату',
-        'xxx.xxx@gmail.com',
-        'Our telegram',
-        'Developed by: Jonco Lab Web Development'
-    ];
 
     clickHandler() {
         this.setState({
             sideBarWidth: this.state.sideBarWidth === 17 ? 4 : 17
         });
         if (this.state.sideBarWidth === 17) {
-            this.sideBarContent = [];
+            this.setState({sideBarClass: 'const-sidebar active'});
         } else if (this.state.sideBarWidth === 4) {
-            this.sideBarContent = [
-                'На головну',
-                'Особистий кабінет',
-                'Інформація про оплату',
-                'xxx.xxx@gmail.com',
-                'Our telegram',
-                'Developed by: Jonco Lab Web Development'
-            ];
+            this.setState({sideBarClass: 'const-sidebar'});
         }
     }
 
     render() {
         return (
-            <section className="const-sidebar" style={{width: parseInt(this.state.sideBarWidth) + '%'}}>
+            <section className={this.state.sideBarClass} style={{width: parseInt(this.state.sideBarWidth) + '%'}}>
                 <nav className="const-menu">
                     <button className="hamburger-btn" onClick={this.clickHandler}>☺</button>
-                    <a href="#"><span>☻</span> {this.sideBarContent[0]}</a>
-                    <a href="#"><span>♥</span> {this.sideBarContent[1]}</a>
-                    <a href="#"><span>♦</span> {this.sideBarContent[2]}</a>
+                    <a href="#">☻ <span>Головна</span></a>
+                    <a href="#">♥ <span>Кабінет</span></a>
+                    <a href="#">♦ <span>Оплата</span></a>
                 </nav>
                 <nav className="sections">
                     <Section/>
@@ -73,9 +58,9 @@ export class SideBar extends Component {
                     <Section/>
                 </nav>
                 <section className="const-info">
-                    <a className="info-mail" href="#"><span>♣</span> {this.sideBarContent[3]}</a>
-                    <a className="info-telegram"><span>♠</span> {this.sideBarContent[4]}</a>
-                    <h3 className="copyright"><span>©</span> {this.sideBarContent[5]}</h3>
+                    <a className="info-mail" href="#">♣ <span>xxx.xxx@gmail.com</span></a>
+                    <a className="info-telegram">♠ <span>Our telegram</span></a>
+                    <a className="copyright">© <span>Developed by: Jonco Lab</span></a>
                 </section>
             </section>
         );
