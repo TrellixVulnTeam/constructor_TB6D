@@ -3,6 +3,11 @@ import './styles/App.css';
 import {Constructor} from "./components/constructor/Constructor";
 import {FirebaseAuth} from "react-firebaseui";
 import * as firebase from "firebase";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import allReducers from "./store/store";
+
+const store = createStore (allReducers);
 
 const config = {
     apiKey: "AIzaSyBH7e8MlyFtghJgDqPawkZlAJtxu_zHYvs",
@@ -69,9 +74,11 @@ class App extends Component {
     render() {
         return this.state.signedIn ?
             (
-                <div className="App">
-                    <Constructor/>
-                </div>
+                <Provider store={store}>
+                    <div className="App">
+                        <Constructor/>
+                    </div>
+                </Provider>
             ) :
             (
                 <FirebaseAuth uiConfig={this.signInUIConfig} firebaseAuth={firebase.auth(ConstructorApp)}/>

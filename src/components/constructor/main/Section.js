@@ -1,22 +1,41 @@
 import React, {Component} from "react";
+import {bindActionCreators} from "redux";
+import {connect} from "react-redux";
+import {selectSection} from "../../../store/events";
 
-export class Section extends Component {
-    constructor(props) {
-        super(props);
-
-        this.clickMe = this.clickMe.bind(this);
-    }
-
-    clickMe() {
-        const Comp = false;
-        this.props.value(Comp);
+class Section extends Component {
+    showSections() {
+        return this.props.sections.map ((section) => {
+            return (
+                <section
+                    onClick={() => this.props.selectSections (section)}
+                    key={section.order}
+                >
+                    I'm the {section.order} section!
+                </section>
+            );
+        });
     }
 
     render() {
         return (
-            <section className="const-section" onClick={() => this.clickMe()}>
-                <h2>S!</h2>
-            </section>
+            <nav className="const-menu">
+                {this.showSections()}
+            </nav>
         );
     }
 }
+
+function mapStateToProps (state) {
+    return {
+        sections: state.sections
+    }
+}
+
+function matchDispatchToProps (dispatch) {
+    return bindActionCreators({
+        selectSections: selectSection
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Section);
