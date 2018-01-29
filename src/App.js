@@ -13,13 +13,13 @@ const config = {
     projectId: "contructor-7553e",
     storageBucket: "contructor-7553e.appspot.com",
     messagingSenderId: "971261132352"
-},
-    CLIENT_ID = "971261132352-4r2jsb42dhdb7i0rrrffg4j6nsvrcu4u.apps.googleusercontent.com";
-
+};
 firebase.initializeApp(config, "Constructor");
-firebase.auth(firebase.app("Constructor")).useDeviceLanguage();
 
 const ConstructorApp = firebase.app("Constructor");
+firebase
+    .auth(ConstructorApp)
+    .useDeviceLanguage();
 
 class App extends Component {
     constructor(props) {
@@ -29,20 +29,61 @@ class App extends Component {
             signedIn: false
         };
     }
-    /**
-     * @param user firebase.User object
-     */
     handleSignInUser(user) {
-        // Lol, kek, cheburek
+        let currentUser = user,
+            sep = "\r\n";
+        this.setState({
+            signedIn: true
+        });
+        alert(
+            "Some news about current user:" + sep +
+            "displayName: " + currentUser.displayName + sep +
+            "email: " + currentUser.email + sep +
+            "emailVerified: " + currentUser.emailVerified + sep +
+            "isAnonymous: " + currentUser.isAnonymous + sep +
+            "metadata: " + currentUser.metadata + sep +
+            "phoneNumber: " + currentUser.phoneNumber + sep +
+            "photoUrl: " + currentUser.photoURL + sep +
+            "providerId: " + currentUser.providerId + sep +
+            "providerData: " + currentUser.providerData + sep +
+            "refreshToken: " + currentUser.refreshToken + sep +
+            "uid: " + currentUser.uid
+        );
+    }
+    handleAuthUIRender() {
+        /*
+                Hide preLoader here!
+                 */
+    }
+    handleSuccessfulSignIn(user, credentials) {
+        if (credentials) {
+            switch (credentials.providerId) {
+                case "google.com":
+                    alert("G!");
+                    break;
+                case "facebook.com":
+                    alert("FB!");
+                    break;
+                case "github.com":
+                    alert("GH!");
+                    break;
+                case "twitter.com":
+                    alert("TW!");
+                    break;
+                default:
+                    alert("Unknown provider!");
+            }
+        } else {
+            alert("Password provider!");
+        }
+        this.handleSignInUser(user);
+        return false;
     }
     signInUIConfig = {
         callbacks: {
-            signInSuccess: (currentApp = this, user, credentials) => {
-                this.setState({
-                    signedIn: true
-                });
-                currentApp.handleSignInUser(user);
-                return false;
+            uiShown: this.handleAuthUIRender,
+            signInSuccess: (user, credentials) => {
+                this.handleSuccessfulSignIn(user, credentials);
             }
         },
         signInFlow: "popup",
@@ -50,7 +91,7 @@ class App extends Component {
             {
                 provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
                 authMethod: "https://accounts.google.com",
-                clientId: CLIENT_ID
+                clientId: "971261132352-4r2jsb42dhdb7i0rrrffg4j6nsvrcu4u.apps.googleusercontent.com"
             },
             {
                 provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -66,7 +107,7 @@ class App extends Component {
                 requireDisplayName: true
             }
         ],
-        tosUrl: "https://www.google.com'",
+        tosUrl: "https://www.google.com",
     };
     render() {
         return this.state.signedIn ?
