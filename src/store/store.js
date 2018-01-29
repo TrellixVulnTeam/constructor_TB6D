@@ -1,10 +1,10 @@
-import {combineReducers} from "redux";
-import SectionsReducer from "./reducer";
-import activeSection from "./activeSection";
+import {createStore} from 'redux';
+import {sectionReducer} from "./reducers";
 
-const allReducers = combineReducers({
-    sections: SectionsReducer,
-    active: activeSection
-});
+// const globalReducer = combineReducers({
+//     sectionReducer
+// });
 
-export default allReducers;
+const store = createStore(sectionReducer);
+
+export default store;

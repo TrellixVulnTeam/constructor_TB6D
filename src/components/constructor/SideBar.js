@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import classSet from 'react-classset';
-import Section from "./main/Section";
+import SectionLink from './SectionLink';
 
-export class SideBar extends Component {
+class SideBar extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            sideBarWidth: 17,
+            sideBarWidth: 17
         };
 
         this.clickHandler = this.clickHandler.bind(this);
@@ -35,7 +35,24 @@ export class SideBar extends Component {
                     <a href="#">♥ <span>Кабінет</span></a>
                     <a href="#">♦ <span>Оплата</span></a>
                 </nav>
-                <Section/>
+                <section className="sections-box">
+                    <SectionLink
+                        order="SECTION_FIRST"
+                        sectionOrderText="I'm the first section"
+                    />
+                    <SectionLink
+                        order="SECTION_SECOND"
+                        sectionOrderText="I'm the second section"
+                    />
+                    <SectionLink
+                        order="SECTION_THIRD"
+                        sectionOrderText="I'm the third section"
+                    />
+                    <SectionLink
+                        order="SECTION_FOURTH"
+                        sectionOrderText="I'm the fourth section"
+                    />
+                </section>
                 <section className="const-info">
                     <a className="info-mail" href="#">♣ <span>xxx.xxx@gmail.com</span></a>
                     <a className="info-telegram">♠ <span>Our telegram</span></a>
@@ -45,3 +62,7 @@ export class SideBar extends Component {
         );
     }
 }
+
+export default SideBar
+
+

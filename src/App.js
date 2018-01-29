@@ -3,11 +3,8 @@ import './styles/App.css';
 import {Constructor} from "./components/constructor/Constructor";
 import {FirebaseAuth} from "react-firebaseui";
 import * as firebase from "firebase";
-import {Provider} from "react-redux";
-import {createStore} from "redux";
-import allReducers from "./store/store";
-
-const store = createStore (allReducers);
+import {Provider} from 'react-redux';
+import store from './store/store';
 
 const config = {
     apiKey: "AIzaSyBH7e8MlyFtghJgDqPawkZlAJtxu_zHYvs",

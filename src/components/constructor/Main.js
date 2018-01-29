@@ -1,25 +1,25 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-
 
 class Main extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            sections: this.props.sections
+        };
+    }
+
     render() {
-        if(this.props.section = null) return <h1>Выберите блок...</h1>;
-        return (
-            <main id="const-main">
-                <section
-                >
-                    I'm the {this.props.order} section!
-                </section>
-            </main>
-        );
+        if(this.state.sections !== []) {
+            return <h1>Выберите блок...</h1>;
+        } else {
+            return (
+                <main id="const-main">
+
+                </main>
+            );
+        }
     }
 }
 
-function mapStateToProps (state) {
-    return {
-        section: state.active
-    }
-}
-
-export default connect(mapStateToProps)(Main);
+export default Main
