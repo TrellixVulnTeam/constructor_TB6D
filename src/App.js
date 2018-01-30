@@ -107,6 +107,7 @@ class App extends Component {
                 requireDisplayName: true
             }
         ],
+        credentialHelper: null,
         tosUrl: "https://www.google.com",
     };
     render() {
