@@ -28,15 +28,20 @@ class App extends Component {
         this.state = {
             signedIn: false
         };
+
+        this.forceEmail = this.forceEmail.bind(this);
     }
     handleSignInUser(user) {
-        let currentUser = user,
-            sep = "\r\n";
-        this.setState({
-            signedIn: true
-        });
+        let currentUser = user, sep = "\n";
+        if (currentUser.email) {
+            this.setState({
+                signedIn: true
+            });
+        } else {
+            this.forceEmail(currentUser);
+        }
         alert(
-            "Some news about current user:" + sep +
+            "Some news about current user!" + sep +
             "displayName: " + currentUser.displayName + sep +
             "email: " + currentUser.email + sep +
             "emailVerified: " + currentUser.emailVerified + sep +
@@ -50,33 +55,28 @@ class App extends Component {
             "uid: " + currentUser.uid
         );
     }
+    forceEmail(user, msg = "Please, enter your email :(") {
+        let newEmail = prompt(msg);
+            // pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            // valid = typeof newEmail === "string" && pattern.test(newEmail.toLowerCase())
+        user.updateEmail(newEmail).then(() => {
+            this.setState({
+                signedIn: true
+            });
+            }, (error) => {
+            this.forceEmail(error);
+        });
+    }
     handleAuthUIRender() {
         /*
                 Hide preLoader here!
                  */
     }
     handleSuccessfulSignIn(user, credentials) {
-        if (credentials) {
-            switch (credentials.providerId) {
-                case "google.com":
-                    alert("G!");
-                    break;
-                case "facebook.com":
-                    alert("FB!");
-                    break;
-                case "github.com":
-                    alert("GH!");
-                    break;
-                case "twitter.com":
-                    alert("TW!");
-                    break;
-                default:
-                    alert("Unknown provider!");
-            }
-        } else {
+        if (credentials) this.handleSignInUser(user);
+        else {
             alert("Password provider!");
         }
-        this.handleSignInUser(user);
         return false;
     }
     signInUIConfig = {
@@ -105,7 +105,7 @@ class App extends Component {
             {
                 provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 requireDisplayName: true
-            }
+            },
         ],
         credentialHelper: null,
         tosUrl: "https://www.google.com",
@@ -120,7 +120,10 @@ class App extends Component {
                 </Provider>
             ) :
             (
-                <FirebaseAuth uiConfig={this.signInUIConfig} firebaseAuth={firebase.auth(ConstructorApp)}/>
+                <FirebaseAuth
+                    uiConfig={this.signInUIConfig}
+                    firebaseAuth={firebase.auth(ConstructorApp)}
+                />
             );
     }
 }
