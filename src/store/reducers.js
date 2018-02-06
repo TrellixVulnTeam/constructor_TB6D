@@ -1,15 +1,33 @@
-import {ADD_SECTION} from './actionCreators';
+import {
+    ADD_SECTION,
+    PAGES_FILTER,
+    Pages
+} from './actionCreators';
 
-const initialState = 'FIRST_SECTION';
+// Add section reducer
+// export function sectionReducer(state, action) {
+//     if(typeof state === 'undefined') return 0;
+//
+//     switch (action.type) {
+//
+//         case ADD_SECTION:
+//             return {
+//                 ...state,
+//                 addSection: action.addSection + 1
+//             }
+//     }
+// }
 
-export function sectionReducer(state = initialState, action) {
+// Switch page reducer
+export function switchReducer(state, action) {
+    if(typeof state === 'undefined') return 'RENDER_CONSTRUCTOR';
+
     switch (action.type) {
 
-        case ADD_SECTION:
-            return [
+        case PAGES_FILTER:
+            return {
                 ...state,
-                action.sectionType
-            ]
+                filter: action.filter
+            }
     }
 }
-

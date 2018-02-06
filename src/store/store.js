@@ -1,10 +1,22 @@
-import {createStore} from 'redux';
-import {sectionReducer} from "./reducers";
+import {combineReducers, createStore} from 'redux';
+import {switchReducer} from './reducers';
+//import {Pages, switchAction} from "./actionCreators";
 
-// const globalReducer = combineReducers({
-//     sectionReducer
+const globalReducer = combineReducers({
+    switchPage: switchReducer
+});
+
+const store = createStore(globalReducer);
+
+// Store test
+// console.log(store.getState());
+//
+// let unsubscribe =  store.subscribe(() => {
+//     console.log(store.getState())
 // });
-
-const store = createStore(sectionReducer);
+//
+// store.dispatch(switchAction(Pages.RENDER_SIGN));
+//
+// unsubscribe();
 
 export default store;
