@@ -33,13 +33,9 @@ class App extends Component {
     }
     handleSignInUser(user) {
         let currentUser = user, sep = "\n";
-        if (currentUser.email) {
-            this.setState({
-                signedIn: true
-            });
-        } else {
-            this.forceEmail(currentUser);
-        }
+        this.setState({
+            signedIn: true
+        });
         alert(
             "Some news about current user!" + sep +
             "displayName: " + currentUser.displayName + sep +
@@ -55,21 +51,18 @@ class App extends Component {
             "uid: " + currentUser.uid
         );
     }
-    forceEmail(user, msg = "Please, enter your email :(") {
-        let newEmail = prompt(msg);
-            // pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            // valid = typeof newEmail === "string" && pattern.test(newEmail.toLowerCase())
-        user.updateEmail(newEmail).then(() => {
-            this.setState({
-                signedIn: true
-            });
-            }, (error) => {
-            this.forceEmail(error);
-        });
+    forceEmail(msg) {
+        let newEmail = prompt(msg),
+            pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            valid = typeof newEmail === "string" && pattern.test(newEmail.toLowerCase());
+
+        return valid ?
+            newEmail :
+            this.forceEmail("Enter valid email!");
     }
     handleAuthUIRender() {
         /*
-                Hide preLoader here!
+        Hide preLoader here!
                  */
     }
     handleSuccessfulSignIn(user, credentials) {
